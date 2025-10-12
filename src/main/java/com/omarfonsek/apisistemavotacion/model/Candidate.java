@@ -1,10 +1,9 @@
 package com.omarfonsek.apisistemavotacion.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,14 +14,12 @@ public class Candidate {
     private Integer id;
     private String name;
     private String party;
-    private int votes = 0;
+    @OneToMany(mappedBy = "candidateId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Vote> votes = new ArrayList<>();
 
     public Candidate(){}
 
-    public Candidate(Integer id,
-                     String name,
-                     String party,
-                     int votes) {
+    public Candidate(Integer id, String name, String party, List<Vote> votes) {
         this.id = id;
         this.name = name;
         this.party = party;
@@ -53,19 +50,23 @@ public class Candidate {
         this.party = party;
     }
 
-    public int getVotes() {
+    public List<Vote> getVotes() {
         return votes;
     }
 
-    public void setVotes(int votes) {
+    public void setVotes(List<Vote> votes) {
         this.votes = votes;
+    }
+
+    public int getVoteCount() {
+        return votes != null ? votes.size() : 0;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Candidate candidate = (Candidate) o;
-        return votes == candidate.votes && Objects.equals(id, candidate.id) && Objects.equals(name, candidate.name) && Objects.equals(party, candidate.party);
+        return Objects.equals(id, candidate.id) && Objects.equals(name, candidate.name) && Objects.equals(party, candidate.party) && Objects.equals(votes, candidate.votes);
     }
 
     @Override

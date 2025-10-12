@@ -1,6 +1,6 @@
+DROP TABLE IF EXISTS vote;
 DROP TABLE IF EXISTS voter;
 DROP TABLE IF EXISTS candidate;
-DROP TABLE IF EXISTS vote;
 
 CREATE TABLE voter(
     id INTEGER AUTO_INCREMENT,
@@ -27,4 +27,10 @@ CREATE TABLE vote(
     CONSTRAINT fk_vote_candidate FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO voter (name, email) VALUES ('Omar Fonseca', 'omarfonsecamontes@hotmail.com'),
+                                       ("Juan Andres Martínez", "juanamartinez1998@hotmail.com"),
+                                       ("Andrea Londoño", "andrealondono25@outlook.com");
 
+INSERT INTO candidate (name, party) VALUES ('Juan Manuel Santos', 'Partido Liberal'),
+                                           ('Oscar Iván Zuluaga', 'Centro democrático'),
+                                           ('Federico Gutiérrez', null)

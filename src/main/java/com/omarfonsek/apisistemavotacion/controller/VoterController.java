@@ -1,9 +1,8 @@
 package com.omarfonsek.apisistemavotacion.controller;
 
 import com.omarfonsek.apisistemavotacion.model.Voter;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.omarfonsek.apisistemavotacion.service.VoterService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -11,21 +10,35 @@ import java.util.List;
 @RequestMapping("api/v1/voters")
 public class VoterController {
 
+    private final VoterService voterService;
+
+    public VoterController(VoterService voterService) {
+        this.voterService = voterService;
+    }
+
     @GetMapping
     public List<Voter> getVoters(){
-        return List.of(
-                new Voter(
-                        1,
-                        "Omar Fonseca",
-                        "omarfonsecamontes@hotmail.com",
-                        false
-                ),
-                new Voter(
-                        2,
-                        "Juan Martínez",
-                        "juanmartinez1998@hotmil.com",
-                        false
-                )
-        );
+        return voterService.getAllVoters();
+    }
+
+    @GetMapping("{id}")
+    public Voter getVoterById(
+            @PathVariable Integer id
+    ){
+        return voterService.getVoterById(id);
+    }
+
+    @PostMapping
+    public String addNewVoter(
+            @RequestBody Voter voter
+    ){
+        return voterService.insertVoter(voter);
+    }
+
+    @DeleteMapping("{id}")
+    public String deleteVoter(
+            @PathVariable Integer id
+    ){
+        return voterService.deleteVoter(id);
     }
 }
