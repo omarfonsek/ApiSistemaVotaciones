@@ -1,13 +1,18 @@
 package com.omarfonsek.apisistemavotacion.model;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
-
+@Entity
 public class Voter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String email;
-    private boolean has_voted;
+    private boolean has_voted = false;
 
     public Voter(){}
 
