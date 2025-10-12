@@ -12,18 +12,18 @@ public class Voter {
     private Integer id;
     private String name;
     private String email;
-    private boolean has_voted = false;
+    private boolean hasVoted = false;
 
     public Voter(){}
 
     public Voter(Integer id,
                  String name,
                  String email,
-                 boolean has_voted) {
+                 boolean hasVoted) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.has_voted = has_voted;
+        this.hasVoted = hasVoted;
     }
 
     public Integer getId() {
@@ -50,24 +50,24 @@ public class Voter {
         this.email = email;
     }
 
-    public boolean isHas_voted() {
-        return has_voted;
+    public boolean isHasVoted() {
+        return hasVoted;
     }
 
-    public void setHas_voted(boolean has_voted) {
-        this.has_voted = has_voted;
+    public void setHasVoted(boolean hasVoted) {
+        this.hasVoted = hasVoted;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Voter voter = (Voter) o;
-        return has_voted == voter.has_voted && Objects.equals(id, voter.id) && Objects.equals(name, voter.name) && Objects.equals(email, voter.email);
+        return hasVoted == voter.hasVoted && Objects.equals(id, voter.id) && Objects.equals(name, voter.name) && Objects.equals(email, voter.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, has_voted);
+        return Objects.hash(id, name, email, hasVoted);
     }
 }
 
