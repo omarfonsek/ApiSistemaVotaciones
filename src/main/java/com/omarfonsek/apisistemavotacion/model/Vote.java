@@ -1,9 +1,6 @@
 package com.omarfonsek.apisistemavotacion.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -13,12 +10,16 @@ public class Vote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer voterId;
-    private Integer candidateId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "voter_id")
+    private Voter voterId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "candidate_id")
+    private Candidate candidateId;
 
     public Vote(){}
 
-    public Vote(Integer id, Integer voterId, Integer candidateId) {
+    public Vote(Integer id, Voter voterId, Candidate candidateId) {
         this.id = id;
         this.voterId = voterId;
         this.candidateId = candidateId;
@@ -32,19 +33,19 @@ public class Vote {
         this.id = id;
     }
 
-    public Integer getVoterId() {
+    public Voter getVoterId() {
         return voterId;
     }
 
-    public void setVoterId(Integer voterId) {
+    public void setVoterId(Voter voterId) {
         this.voterId = voterId;
     }
 
-    public Integer getCandidateId() {
+    public Candidate getCandidateId() {
         return candidateId;
     }
 
-    public void setCandidateId(Integer candidateId) {
+    public void setCandidateId(Candidate candidateId) {
         this.candidateId = candidateId;
     }
 
