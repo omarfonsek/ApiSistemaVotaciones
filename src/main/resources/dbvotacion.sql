@@ -1,4 +1,6 @@
 DROP TABLE IF EXISTS voter;
+DROP TABLE IF EXISTS candidate;
+DROP TABLE IF EXISTS vote;
 
 CREATE TABLE voter(
     id INTEGER AUTO_INCREMENT,
@@ -7,9 +9,7 @@ CREATE TABLE voter(
     has_voted BIT DEFAULT 0 NOT NULL,
     CONSTRAINT pk_voter_id PRIMARY KEY (id),
     CONSTRAINT uq_voter_email UNIQUE (email)
-);
-
-DROP TABLE IF EXISTS candidate;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE candidate(
     id INTEGER AUTO_INCREMENT,
@@ -17,9 +17,7 @@ CREATE TABLE candidate(
     party VARCHAR(255),
     votes INT DEFAULT 0 NOT NULL,
     CONSTRAINT pk_candidate_id PRIMARY KEY (id)
-)
-
-DROP TABLE IF EXISTS vote;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE vote(
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -27,6 +25,6 @@ CREATE TABLE vote(
     candidate_id INTEGER,
     CONSTRAINT fk_vote_voter FOREIGN KEY (voter_id) REFERENCES voter(id) ON DELETE CASCADE,
     CONSTRAINT fk_vote_candidate FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE
-)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 

@@ -1,12 +1,21 @@
 package com.omarfonsek.apisistemavotacion.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class Candidate {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String party;
-    private int votes;
+    private int votes = 0;
 
     public Candidate(){}
 
