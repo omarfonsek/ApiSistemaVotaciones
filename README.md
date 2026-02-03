@@ -12,7 +12,7 @@ GET/votes/statics
 <img width="483" height="551" alt="image" src="https://github.com/user-attachments/assets/3579bba2-85b1-4ad7-812d-d2cafdac432f" />
 Creación de tablas en MySql por medio del schema dbvotacion.sql 
 <img width="163" height="99" alt="image" src="https://github.com/user-attachments/assets/be85dc0b-175d-4986-b84b-8e886c6fc3e0" />
-
+Para ver el código selecciona la rama Master
 
 
 
